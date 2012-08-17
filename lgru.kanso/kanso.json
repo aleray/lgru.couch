@@ -1,0 +1,12 @@
+{
+    "name": "lgru",
+    "version": "0.0.1",
+    "description": "Libre Graphics research Unit Reader",
+    "modules": ["lib"],
+    "load": "lib/app",
+    "dependencies": {
+        "modules": null,
+        "properties": null,
+        "underscore": null
+    }
+}

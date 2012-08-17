@@ -1,0 +1,33 @@
+[
+    {
+        "_id": "187f9ed35c9cd5bd5d39b10b960d70f1",
+        "_rev": "1-40658da73604a491a96c9fa3fb2d7ce2",
+        "type": "publication",
+        "bibtex": {
+            "authors": [
+                "Annick Lantenois"
+            ],
+            "publisher": "CNAP",
+            "journal": "Graphisme en France 2012",
+            "title": "Ouvrir des chemins",
+            "year": 2012
+        }
+    },
+    {
+        "_id": "187f9ed35c9cd5bd5d39b10b960d8007",
+        "_rev": "1-5594b0df9b9ac06a6edcb15926a9f5e8",
+        "type": "publication",
+        "bibtex": {
+            "authors": [
+                "Geoff Cox",
+                "Alex McLean",
+                "Adrian Ward"
+            ],
+            "book_title": "Art++",
+            "publisher": "Éditions Hyx",
+            "url": "http://www.editions-hyx.com/site/media/download/extrait/coxartplusplus-hyx-esthetiqueducodegeneratif.pdf",
+            "title": "L'Esthétique du code génératif",
+            "year": 2011
+        }
+    }
+]
