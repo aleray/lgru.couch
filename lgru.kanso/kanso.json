@@ -2,11 +2,21 @@
     "name": "lgru",
     "version": "0.0.1",
     "description": "Libre Graphics research Unit Reader",
+    "attachments": "static",
     "modules": ["lib"],
     "load": "lib/app",
+    "handlebars": {
+        "all_partials": false,
+        "templates": "templates"
+    },
     "dependencies": {
+        "attachments": null,
         "modules": null,
         "properties": null,
-        "underscore": null
+        "underscore": null,
+        "handlebars": null,
+        "handlebars-helpers": null,
+        "couchtypes": null,
+        "showdown": null
     }
 }

@@ -1,0 +1,15 @@
+<article>
+<p>{{#join bibtex.authors}}{{/join}}</p>
+
+<b><a href="../../../_show/publications/{{_id}}">{{ bibtex.title }}</a></b><br/>
+
+{{#if bibtex.journal}}
+	<i>{{ bibtex.journal }}, {{ bibtex.year }}</i><br />
+{{ else }}
+    <i>
+    {{#if bibtex.book_title}}{{bibtex.book_title}}{{/if}}
+    {{#if bibtex.publisher}}{{bibtex.publisher}},{{/if}}
+    {{bibtex.year}}
+    </i><br/>
+{{/if}}
+</article>
