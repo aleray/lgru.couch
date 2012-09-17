@@ -1,60 +1,72 @@
-module.exports = {
-    index: function(doc, req) {
-        var showdown = require('showdown'),
-            sd = new showdown.converter(),
-            Handlebars = require('handlebars');
+var showdown = require('showdown'),
+    Handlebars = require('handlebars'),
+    _ = require('underscore');
 
-        provides("html", function() {
-            send(Handlebars.templates['base.html']({
-                content: sd.makeHtml(doc.body)
-            }));
-        });
-    },
-    add: function(doc, req) {
-        provides("html", function() {
-            send("here comes the form to add publications");
-        });
-    },
-    reviews: function(doc, req) {
-        provides("html", function() {
-            send("here comes the review");
-        });
-    },
-    publications: function(doc, req) {
-        var showdown = require('showdown'),
-            sd = new showdown.converter(),
-            Handlebars = require('handlebars'),
-            _ = require('underscore'),
-            body;
 
-        //require('handlebars-helpers');
 
-        body = doc.body ? doc.body : "This text isn't available yet";
 
-        if (doc._attachments) {
-            var keys = _.keys(doc._attachments);
+function index (doc, req) {
+    var sd = new showdown.converter();
 
-            for (var k in keys) {
-                body += '<a href="/publications/' + doc._id + '/' + keys[k] + '">' + keys[k] + '</a>'; 
-            }
-        };
+    provides("html", function() {
+        send(Handlebars.templates['base.html']({
+            content: sd.makeHtml(doc.body)
+        }));
+    });
+}
 
-        provides("html", function() {
-            send(Handlebars.templates['base.html']({
-                content: sd.makeHtml(body)
-            }));
-        });
-    },
-    bibtex: function(doc, req) {
-        var _ = require('underscore')._,
-            Handlebars = require('handlebars');
 
-        var ctx = {"type": doc.bibtex_type};
-        ctx = _.extend(ctx, doc.bibtex);
+function add (doc, req) {
+    provides("html", function() {
+        send("here comes the form to add publications");
+    });
+}
 
-        return {
-           "headers" : {"Content-Type" : "text/plain"},
-           "body" : Handlebars.templates['publication.bib'](ctx)
+
+function reviews (doc, req) {
+    provides("html", function() {
+        send("here comes the review");
+    });
+}
+
+
+function publications (doc, req) {
+    var sd = new showdown.converter(),
+        body;
+
+    body = doc.body ? doc.body : "This text isn't available yet";
+
+    if (doc._attachments) {
+        var keys = _.keys(doc._attachments);
+
+        for (var k in keys) {
+            body += '<a href="/publications/' + doc._id + '/' + keys[k] + '">' + keys[k] + '</a>'; 
         }
-    }
+    };
+
+    provides("html", function() {
+        send(Handlebars.templates['base.html']({
+            content: sd.makeHtml(body)
+        }));
+    });
+}
+
+
+function bibtex (doc, req) {
+    var ctx = _.extend({"type": doc.bibtex_type}, doc.bibtex);
+
+    registerType("bibtex", "application/x-bibtex", "application/x-bibtex");
+
+    provides("bibtex", function() {
+        send(Handlebars.templates['publication.bib'](ctx));
+    });
+}
+
+
+module.exports = {
+    index        : index,
+    add          : add,
+    reviews      : reviews,
+    publications : publications,
+    bibtex       : bibtex
 };
