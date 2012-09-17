@@ -9,14 +9,21 @@
         "all_partials": false,
         "templates": "templates"
     },
+    "less": {
+        "compile": [
+            "static/css/baseline.all.less"
+        ]
+    },
     "dependencies": {
         "attachments": null,
         "modules": null,
         "properties": null,
         "underscore": null,
+        "underscore-string": null,
         "handlebars": null,
         "handlebars-helpers": null,
         "couchtypes": null,
-        "showdown": null
+        "showdown": null,
+        "less-precompiler": null
     }
 }

@@ -1,10 +1,10 @@
-<article>
-<p>{{#join bibtex.authors}}{{/join}}</p>
+<article class="value">
+{{#join bibtex.authors}}{{/join}}<br/>
 
-<b><a href="../../../_show/publications/{{_id}}">{{ bibtex.title }}</a></b><br/>
+<cite><a href="/publications/{{_id}}">{{ bibtex.title }}</a></cite><br/>
 
 {{#if bibtex.journal}}
-	<i>{{ bibtex.journal }}, {{ bibtex.year }}</i><br />
+    <i>{{ bibtex.journal }}, {{ bibtex.year }}</i><br />
 {{ else }}
     <i>
     {{#if bibtex.book_title}}{{bibtex.book_title}}{{/if}}

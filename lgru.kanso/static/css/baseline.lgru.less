@@ -1,0 +1,60 @@
+@import "baseline.constants.less";
+@import "baseline.grid.less";
+
+body {
+    padding: 2em;
+}
+
+nav#side {
+    .column(2);
+    font-weight: bold;
+}
+
+nav#side ul {
+    margin-left: 0;
+}
+
+article#main {
+    .column(5);
+}
+
+cite {
+    font-weight: bold;
+    font-style: normal;
+}
+
+article {
+    margin-bottom: @line-height;
+}
+
+.key {
+    float: left;
+}
+.value {
+    .push(1);
+}
+
+h1.key {
+    margin-top: 0;
+}
+
+body {
+    color: #327041;
+}
+
+a {
+    /*opacity: 0.7;*/
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+}
+
+figure {
+    margin: @line-height * 2 0;
+}
+
+figure img {
+    border: 1px solid black;
+}

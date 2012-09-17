@@ -1,0 +1,25 @@
+@import "baseline.constants.less";
+.column-count(@val) {
+    -moz-column-count: @val;
+    -webkit-column-count: @val;
+    column-count: @val;
+}
+
+.column-width(@val) {
+    -moz-column-width: @val;
+    -webkit-column-width: @val;
+    column-width: @val;
+}
+
+.column-gap(@val) {
+    -moz-column-gap: @val;
+    -webkit-column-gap: @val;
+    column-gap: @val;
+}
+
+.wrap () {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word;
+}

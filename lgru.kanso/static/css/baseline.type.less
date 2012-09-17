@@ -1,0 +1,123 @@
+@import "baseline.constants.less";
+/*
+Baseline - a designer framework
+Copyright (C) 2009 Stephane Curzi, ProjetUrbain.com
+Creative Commons Attribution-Share Alike 3.0 License
+version 0.5
+*/
+/******************** Baseline grid: 13/18px ********************/
+
+body {
+    font-size: 75%;
+    nowhitespace: afterproperty;
+    line-height: 1.5;
+    /*12/18*/
+    font-size: @font-size;
+    line-height: @line-height;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative
+}
+h1,
+h2 {
+    margin-bottom: @line-height;
+}
+h2 {
+    margin-top: @line-height;
+}
+h1,
+h2,
+h3,
+h4 {
+    margin-top: @line-height;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: @font-size;
+    line-height: @line-height;
+    font-weight: normal;
+}
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+    margin-top: 0
+}
+p,
+pre,
+address {
+    font-size: @font-size;
+    line-height: @line-height;
+    position: relative;
+    top: @line-height - @font-size;
+}
+small {
+    font-size: 11px
+}
+abbr,
+code,
+kbd,
+samp,
+small,
+var {
+    line-height: 15px
+}
+ul,
+ol,
+dl,
+dialog {
+    font-size: @font-size;
+    line-height: @line-height;
+    position: relative;
+    top: @line-height - @font-size;
+    margin-top: @line-height;
+    margin-bottom: @line-height;
+}
+li ul,
+li ol,
+ul ul,
+ol ol {
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+li h1,
+li h2,
+li h3,
+li h4,
+li h5,
+li h6,
+li p {
+    top: 0
+}
+form,
+legend,
+label {
+    font-size: @font-size;
+    line-height: @line-height;
+}
+legend {
+    position: relative;
+    top: @line-height - @font-size;
+}
+table {
+    font-size: @font-size
+}
+caption {
+    font-size: @font-size;
+    line-height: @line-height;
+    position: relative;
+}
+hr {
+    position: relative;
+    height: 1px;
+    margin: @line-height 0 (@line-height - 1) 0;
+}
+a {
+    /*text-decoration: underline;*/
+    color: inherit;
+}

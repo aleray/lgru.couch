@@ -3,22 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <title>Libre Graphics Research Unit</title>
-    <link rel="stylesheet" href="/ddd/_design/lgru/static/lib/reset.css" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=News+Cycle:400,700' rel='stylesheet' type='text/css'>
-    <style>
-        body {
-            font-family: 'News Cycle', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/baseline.all.css" type="text/css" />
 </head>
 <body>
-    <header>
-    <h1>Libre Graphics Research Unit Reader</h1>
-    </header>
-    <nav>
-        <a href="/ddd/_design/lgru/_show/index/intro/">Home</a> |
-        <a href="/ddd/_design/lgru/_list/publications/publications/">Publications</a> |
+    <nav id="side">
+        <header>
+        <h1><a href="/">Libre Graphics Research Unit Reader</a></h1>
+        </header>
+        <ul>
+            <li><a href="/publications/">Publications</a></li>
+            <li><a href="/reviews/">Reviews</a></li>
+            <li><a href="/compilations/">Compilations</a></li>
+        </ul>
     </nav>
+    <article id="main">
     {{{ content }}}
+    </article>
 </body>
 </html>
