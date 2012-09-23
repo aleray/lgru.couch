@@ -10,9 +10,9 @@ module.exports = {
     reviews: {
         map: function (doc) {
             if (doc.type === "review") {
-                emit(doc.authors, doc);
+                emit([doc._id, 'review'], doc);
                 for (var i in doc.about) {
-                    emit('review', {"_id": doc.about[i]})
+                    emit([doc._id, 'about'], {"_id": doc.about[i]})
                 }
             };
         }

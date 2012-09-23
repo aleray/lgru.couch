@@ -24,8 +24,15 @@ function add (doc, req) {
 
 
 function reviews (doc, req) {
+    var sd = new showdown.converter(),
+        body;
+
+    body = doc.body ? doc.body : "This review isn't available yet";
+
     provides("html", function() {
-        send("here comes the review");
+        send(Handlebars.templates['base.html']({
+            content: sd.makeHtml(body)
+        }));
     });
 }
 

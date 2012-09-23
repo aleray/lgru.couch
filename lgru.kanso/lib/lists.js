@@ -37,7 +37,6 @@ function publications (head, req) {
         _.each(byYear, function(publications, year) { 
             output.push('<h1 class="key">' + year + '</h1>');
             _.each(publications, function(publication) { 
-                var bib = publication.bibtex;
                 output.push(Handlebars.templates['partials/publication-row.html'](publication));
             });
         });
@@ -51,18 +50,50 @@ function publications (head, req) {
 
 function reviews (head, req) {
     provides("html", function() {
-        var output = [];
+        var output = [],
+            current = {};
 
         while (row = getRow()) {
-            if (row.key === 'review') {
-                output.push(row.doc.bibtex.url);
+            if (current['id'] && row.key[0] !== current['id']) {
+                output.push(Handlebars.templates['partials/review-row.html'](current));
+                current = {};
+            };
+
+            if (row.key[1] === 'about') {
+                current.about = current.about ? current.about : [];
+                //current['about'].push('<a href="/publications/' + row.doc._id + '">' + row.doc.bibtex.title + '</a>');
+                current['about'].push(Handlebars.templates['partials/publication-row.html'](row.doc));
             } else {
-                output.push(Handlebars.templates['partials/review-row.html'](row.value));
+                current['id'] = row.id;
+                current['authors'] = row.doc.authors;
             };
         }
+        output.push(Handlebars.templates['partials/review-row.html'](current));
 
         send(Handlebars.templates['base.html']({
             content: output.join("\n")
+        }));
+    });
+}
+
+function foo (head, req) {
+    provides("html", function() {
+        var output = [],
+            current = {};
+
+        while (row = getRow()) {
+            if (row.key[1] === 'about') {
+                current.documents = current.documents ? current.documents : [];
+                current.documents.push(Handlebars.templates['partials/publication-row.html'](row.doc));
+            } else {
+                current.doc = row.doc;
+            };
+        }
+
+        current.documents = current.documents.join("\n");
+
+        send(Handlebars.templates['base.html']({
+            content: Handlebars.templates['partials/review-detail.html'](current)
         }));
     });
 }
@@ -86,5 +117,6 @@ function compilations (head, req) {
 module.exports = {
     publications : publications,
     reviews      : reviews,
+    foo          : foo,
     compilations : compilations 
 };

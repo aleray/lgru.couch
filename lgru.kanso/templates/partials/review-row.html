@@ -1,6 +1,5 @@
 <article>
-<p>{{#join authors}}{{/join}}</p>
-<p>{{#list about}}{{/list}}</p>
-
+<h1 class="key"><a href="/reviews/{{ id }}">{{#join authors}}{{/join}}</a></h1>
+{{#each about}}{{{this}}}{{/each}}
 
 </article>
