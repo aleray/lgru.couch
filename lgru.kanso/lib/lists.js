@@ -1,5 +1,6 @@
 var _          = require('underscore'),
     _s         = require('underscore-string'),
+    showdown   = require('showdown'),
     Handlebars = require('handlebars');
 
 
@@ -15,7 +16,7 @@ Handlebars.registerHelper('list', function(items, options) {
   var out = "<ul>";
 
   for(var i=0, l=items.length; i<l; i++) {
-    out = out + "<li>" + items[i] + "</li>";
+    out = out + "<li><a href='/publications/" + items[i] + "'>" + items[i] + "</a></li>";
   }
 
   return out + "</ul>";
@@ -77,6 +78,8 @@ function reviews (head, req) {
 }
 
 function foo (head, req) {
+    var sd = new showdown.converter();
+
     provides("html", function() {
         var output = [],
             current = {};
@@ -87,6 +90,7 @@ function foo (head, req) {
                 current.documents.push(Handlebars.templates['partials/publication-row.html'](row.doc));
             } else {
                 current.doc = row.doc;
+                current.doc.body = sd.makeHtml(current.doc.body);
             };
         }
 
