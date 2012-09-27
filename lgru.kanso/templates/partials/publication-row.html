@@ -4,12 +4,11 @@
 <cite><a href="/publications/{{_id}}">{{ bibtex.title }}</a></cite><br/>
 
 {{#if bibtex.journal}}
-    <i>{{ bibtex.journal }}, {{ bibtex.year }}</i><br />
+    <em>{{ bibtex.journal }}, {{ bibtex.year }}</em><br />
 {{ else }}
-    <i>
-    {{#if bibtex.book_title}}{{bibtex.book_title}}{{/if}}
+    {{#if bibtex.book_title}}<em>{{bibtex.book_title}}</em>{{/if}}
     {{#if bibtex.publisher}}{{bibtex.publisher}},{{/if}}
-    {{bibtex.year}}
-    </i><br/>
+    {{bibtex.year}}<br />
+    {{bibtex.license}}
 {{/if}}
 </article>
