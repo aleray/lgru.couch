@@ -1,0 +1,7 @@
+{{#key_value compilations}}
+<article class="value">
+<cite><a href="/compilations/{{ value.id }}">{{ value.title }}</a></cite><br/>
+{{ value.description }}
+{{#each value.documents}}{{{include "partials/publication-row.html"}}}{{/each}}
+</article>
+{{/key_value}}

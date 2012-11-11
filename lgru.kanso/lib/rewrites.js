@@ -9,5 +9,5 @@ module.exports = [
     {from: "/publications/*", to: "_show/publications/*"},
 
     {from: "/compilations/", to: "_list/compilation_list/compilations/", query: {"include_docs": "true"}},
-    {from: "/compilations/*", to: "_show/compilations/*"}
+    {from: "/compilations/*", to: "_show/compilations/*"},
 ];
