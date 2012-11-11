@@ -20,7 +20,10 @@ module.exports = {
     compilations: {
         map: function (doc) {
             if (doc.type === "compilation") {
-                emit(doc.title, doc);
+                emit([doc._id, 'compilation'], null);
+                for (var i in doc.documents) {
+                    emit([doc._id, 'document'], {"_id": doc.documents[i]})
+                }
             };
         }
     }

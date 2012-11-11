@@ -25,7 +25,7 @@ Handlebars.registerHelper('list', function(items, options) {
 });
 
 
-function publications (head, req) {
+function publication_list (head, req) {
     provides("html", function() {
         var rows = [],
             byYear,
@@ -51,7 +51,7 @@ function publications (head, req) {
 }
 
 
-function reviews (head, req) {
+function review_list (head, req) {
     provides("html", function() {
         var output = [],
             current = {};
@@ -79,7 +79,7 @@ function reviews (head, req) {
     });
 }
 
-function foo (head, req) {
+function review_detail (head, req) {
     var sd = new showdown.converter();
 
     provides("html", function() {
@@ -105,13 +105,47 @@ function foo (head, req) {
 }
 
 
-function compilations (head, req) {
+//function compilation_list (head, req) {
+    //provides("html", function() {
+        //var output = [];
+
+        //while (row = getRow()) {
+            //output.push(Handlebars.templates['partials/compilation-row.html'](row.value));
+        //}
+
+        //send(Handlebars.templates['base.html']({
+            //content: output.join("\n")
+        //}));
+    //});
+//}
+function compilation_list (head, req) {
     provides("html", function() {
-        var output = [];
+        var output = [],
+            current = {};
 
         while (row = getRow()) {
-            output.push(Handlebars.templates['partials/compilation-row.html'](row.value));
+            // Is the row related to a new compilation?
+            if (current['id'] && row.key[0] !== current['id']) {
+                // yes, pushes the row
+                log(current);
+                output.push(Handlebars.templates['partials/compilation-row.html'](current));
+                current = {};
+            };
+
+            if (row.key[1] == "document") {
+                current.documents = current.documents ? current.documents : [];
+                ////current['about'].push('<a href="/publications/' + row.doc._id + '">' + row.doc.bibtex.title + '</a>');
+                if (row.doc) {
+                    current.documents.push(Handlebars.templates['partials/publication-row.html'](row.doc));
+                };
+            } else {
+                current['id'] = row.id;
+                //current['authors'] = row.doc.authors;
+                current['title'] = row.doc.title;
+                current['description'] = row.doc.description;
+            };
         }
+        output.push(Handlebars.templates['partials/compilation-row.html'](current));
 
         send(Handlebars.templates['base.html']({
             content: output.join("\n")
@@ -121,8 +155,8 @@ function compilations (head, req) {
 
 
 module.exports = {
-    publications : publications,
-    reviews      : reviews,
-    foo          : foo,
-    compilations : compilations 
+    publication_list : publication_list,
+    review_list      : review_list,
+    review_detail    : review_detail,
+    compilation_list : compilation_list 
 };
