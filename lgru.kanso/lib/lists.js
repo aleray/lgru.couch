@@ -5,10 +5,12 @@ var _          = require('underscore'),
 
 
 Handlebars.registerHelper('join', function(items) {
-    if (typeof(items) === "string") {
+    if (_.isString(items)) {
         return items;   
+    } else if (_.isArray(items)) {
+        return _s.toSentence(items);
     } else {
-        return _s.toSentence(items)
+        return typeof(items);
     };
 });
 

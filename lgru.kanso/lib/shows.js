@@ -39,7 +39,17 @@ function reviews (doc, req) {
 
 function publications (doc, req) {
     var sd = new showdown.converter(),
+        metadata = "",
         body;
+
+    if (doc.bibtex) {
+        _.each(doc.bibtex, function (value, key) {
+            metadata += value; 
+            metadata += "<br />"
+        });
+            metadata += "<br />"
+            metadata += "<br />"
+    };
 
     body = doc.body ? doc.body : "This text isn't available yet";
 
@@ -53,7 +63,7 @@ function publications (doc, req) {
 
     provides("html", function() {
         send(Handlebars.templates['base.html']({
-            content: sd.makeHtml(body)
+            content: sd.makeHtml(metadata + body)
         }));
     });
 }
